@@ -132,6 +132,30 @@ the website.
 
 ---
 
+## Interim enrichment from the bios
+
+Until a LinkedIn data-provider key is available, `scraper/parse_bios.py`
+derives what it can from the written bios: job title, employer, current city,
+education and a coarse industry bucket. It is deliberately conservative — a
+field is only written when a clear pattern matches, and the LinkedIn scrape
+supersedes these values when it runs.
+
+```bash
+# Preview coverage and a few examples
+python scraper/parse_bios.py --csv data/fellows_bios.csv --sample 20
+
+# Generate UPDATE statements, then apply them
+python scraper/parse_bios.py --csv data/fellows_bios.csv \
+    --sql data/import_fellow_details.sql
+psql "$CONN" -f data/import_fellow_details.sql
+```
+
+Roughly: title ~83%, employer ~70%, education ~72%, industry ~90%, city ~22%.
+The bios rarely state a current city, so location stays mostly empty until the
+scrape fills it in.
+
+---
+
 ## Local development / demo mode
 
 The portal falls back to **demo mode** (bundled sample data, no backend) when
