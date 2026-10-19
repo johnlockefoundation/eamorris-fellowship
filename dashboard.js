@@ -24,7 +24,7 @@
 
   function fellowLocation(f) {
     if (f.city && f.state) return `${f.city}, ${f.state}`;
-    return f.city || f.state || f.country || "—";
+    return f.city || f.state || f.country || null;
   }
 
   function formatDate(d) {
@@ -145,22 +145,28 @@
     toggleEmpty(false);
 
     wrap.innerHTML = list
-      .map(
-        (x) => `
+      .map((x) => {
+        const loc = fellowLocation(x);
+        const chips = [];
+        if (loc) chips.push(`<span class="chip chip-solid">${escapeHtml(loc)}</span>`);
+        if (x.cohort_year) chips.push(`<span class="chip">Cohort ${escapeHtml(x.cohort_year)}</span>`);
+        if (x.industry) chips.push(`<span class="chip">${escapeHtml(x.industry)}</span>`);
+        const sub = x.headline || x.current_title || x.current_company || "";
+        return `
       <article class="fellow-card" data-id="${escapeHtml(x.id)}" tabindex="0">
         <div class="avatar">${escapeHtml(initials(x.full_name))}</div>
         <div class="fellow-info">
           <h3 class="fellow-name">${escapeHtml(x.full_name)}</h3>
-          <p class="fellow-title">${escapeHtml(x.headline || x.current_title || "")}</p>
-          <p class="fellow-company">${escapeHtml(x.current_company || "")}</p>
-          <div class="chips">
-            <span class="chip chip-solid">${escapeHtml(fellowLocation(x))}</span>
-            <span class="chip">Cohort ${escapeHtml(x.cohort_year)}</span>
-            <span class="chip">${escapeHtml(x.industry || "")}</span>
-          </div>
+          ${sub ? `<p class="fellow-title">${escapeHtml(sub)}</p>` : ""}
+          ${
+            x.current_company && sub !== x.current_company
+              ? `<p class="fellow-company">${escapeHtml(x.current_company)}</p>`
+              : ""
+          }
+          ${chips.length ? `<div class="chips">${chips.join("")}</div>` : ""}
         </div>
-      </article>`
-      )
+      </article>`;
+      })
       .join("");
   }
 
@@ -170,13 +176,17 @@
       <div class="drawer-head">
         <div class="avatar avatar-lg">${escapeHtml(initials(f.full_name))}</div>
         <h2>${escapeHtml(f.full_name)}</h2>
-        <p class="fellow-title">${escapeHtml(f.headline || f.current_title || "")}</p>
-        <p class="fellow-company">${escapeHtml(f.current_company || "")}</p>
+        ${
+          f.headline || f.current_title
+            ? `<p class="fellow-title">${escapeHtml(f.headline || f.current_title)}</p>`
+            : ""
+        }
+        ${f.current_company ? `<p class="fellow-company">${escapeHtml(f.current_company)}</p>` : ""}
       </div>
       <dl class="detail-list">
-        <div><dt>Cohort</dt><dd>${escapeHtml(f.cohort_year)}</dd></div>
+        ${f.cohort_year ? `<div><dt>Cohort</dt><dd>${escapeHtml(f.cohort_year)}</dd></div>` : ""}
         <div><dt>Industry</dt><dd>${escapeHtml(f.industry || "—")}</dd></div>
-        <div><dt>Location</dt><dd>${escapeHtml(fellowLocation(f))}</dd></div>
+        <div><dt>Location</dt><dd>${escapeHtml(fellowLocation(f) || "—")}</dd></div>
         <div><dt>Education</dt><dd>${escapeHtml(f.education || "—")}</dd></div>
       </dl>
       ${
@@ -275,7 +285,7 @@
     fillSelect($("#fellowIndustry"), uniq(fellows.map((f) => f.industry)), "All industries");
     fillSelect(
       $("#fellowCohort"),
-      uniq(fellows.map((f) => String(f.cohort_year))).sort((a, b) => b - a),
+      uniq(fellows.map((f) => f.cohort_year)).sort((a, b) => b - a),
       "All cohorts"
     );
     fillSelect($("#fellowLocation"), uniq(fellows.map(fellowLocation)), "All locations");

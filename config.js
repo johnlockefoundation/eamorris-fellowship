@@ -13,9 +13,11 @@
 
 window.EAM_CONFIG = {
   // ---- Supabase -----------------------------------------------------------
-  // Leave as-is to run in demo mode. Replace to go live.
-  SUPABASE_URL: "https://YOUR-PROJECT.supabase.co",
-  SUPABASE_ANON_KEY: "YOUR-ANON-KEY",
+  // Project: johnlockefoundation / eamorris-fellowship
+  // The anon key is public by design — reads are gated by RLS + the login.
+  SUPABASE_URL: "https://iwmyqbensppmrstykqpd.supabase.co",
+  SUPABASE_ANON_KEY:
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml3bXlxYmVuc3BwbXJzdHlrcXBkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI0Mjk0NjcsImV4cCI6MjEwODAwNTQ2N30.fI2H29H-uFLYYCtrIkcKWgRnSy0BTguBx_2B4CM5Rew",
 
   // The single shared fellowship account. Fellows are all given the same
   // password; the email below is only used internally to identify the one

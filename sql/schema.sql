@@ -1,17 +1,19 @@
 -- ============================================================================
 -- EA Morris Fellowship — Supabase schema
--- Run this in the Supabase SQL editor (Dashboard → SQL → New query).
+-- Apply with:  psql "$CONN" -f sql/schema.sql
+-- (or via the Supabase SQL editor)
 --
 -- Two tables power the portal:
 --   • jobs     — the curated jobs board (manually maintained by the team)
---   • fellows  — the alumni directory (populated by the LinkedIn scraper and
---                manual edits)
+--   • fellows  — the alumni directory (loaded by the scraper / import scripts)
 --
--- RLS is enabled on both tables but locked down to anonymous users by
--- default. Because the portal is a static site the anon key ships to the
--- browser, so if you want public read access flip the SELECT policies to
--- `USING (true)`. The login itself is enforced client-side against Supabase
--- Auth (single shared account) — see README for the trade-offs.
+-- ACCESS MODEL
+-- ------------
+-- The portal is a static site, so the anon key ships to the browser and must
+-- be treated as public. Reads are therefore restricted to the `authenticated`
+-- role: a row is only returned to a request carrying a valid Supabase Auth
+-- session (i.e. someone who signed in with the shared fellowship password).
+-- Anonymous visitors get nothing, even though the site URL is public.
 -- ============================================================================
 
 create extension if not exists "pgcrypto";
@@ -38,59 +40,55 @@ create table if not exists public.jobs (
 -- fellows
 -- ---------------------------------------------------------------------------
 create table if not exists public.fellows (
-  id             uuid primary key default gen_random_uuid(),
-  full_name      text not null,
-  headline       text,
+  id              uuid primary key default gen_random_uuid(),
+  full_name       text not null,
+  headline        text,
   current_company text,
-  current_title  text,
-  city           text,
-  state          text,
-  country        text,
-  cohort_year    int,
-  industry       text,
-  email          text,
-  linkedin_url   text,
-  education      text,
-  skills         text[] default '{}',
-  bio            text,
-  photo_url      text,
+  current_title   text,
+  city            text,
+  state           text,
+  country         text,
+  cohort_year     int,
+  industry        text,
+  email           text,
+  linkedin_url    text,
+  education       text,
+  skills          text[] default '{}',
+  bio             text,
+  photo_url       text,
   -- de-dup key used by the scraper; one row per LinkedIn profile
-  linkedin_id    text unique,
-  raw            jsonb,        -- full LinkedIn payload for debugging
-  created_at     timestamptz default now(),
-  updated_at     timestamptz default now()
+  linkedin_id     text unique,
+  raw             jsonb,        -- full provider payload, for debugging
+  created_at      timestamptz default now(),
+  updated_at      timestamptz default now()
 );
 
--- Convenience indexes for the directory search
-create index if not exists fellows_company_idx on public.fellows using gin (to_tsvector('simple', coalesce(current_company, '')));
+-- Indexes to speed up directory search
 create index if not exists fellows_name_idx    on public.fellows using gin (to_tsvector('simple', coalesce(full_name, '')));
+create index if not exists fellows_company_idx on public.fellows using gin (to_tsvector('simple', coalesce(current_company, '')));
 
 -- ---------------------------------------------------------------------------
--- Row Level Security
+-- Row Level Security — reads require an authenticated session
 -- ---------------------------------------------------------------------------
 alter table public.jobs    enable row level security;
 alter table public.fellows enable row level security;
 
--- Demo: allow anonymous READ. Tighten once auth is wired (see note above).
-drop policy if exists "anon can read jobs"    on public.jobs;
-drop policy if exists "anon can read fellows" on public.fellows;
-create policy "anon can read jobs"    on public.jobs    for select using (true);
-create policy "anon can read fellows" on public.fellows for select using (true);
+drop policy if exists "anon can read jobs"            on public.jobs;
+drop policy if exists "anon can read fellows"         on public.fellows;
+drop policy if exists "authenticated can read jobs"    on public.jobs;
+drop policy if exists "authenticated can read fellows" on public.fellows;
 
--- Service role bypasses RLS, so the scraper (run with the service key from a
--- local machine, never in the browser) can freely INSERT / UPDATE.
+create policy "authenticated can read jobs"
+  on public.jobs for select
+  to authenticated
+  using (true);
 
--- ---------------------------------------------------------------------------
--- Seed sample data
--- ---------------------------------------------------------------------------
-insert into public.jobs (title, company, location, work_type, category, description, url, tags, featured, posted_at) values
-  ('Senior Strategy Manager','Stripe','New York, NY','Full-time','Strategy','Drive high-priority strategic initiatives across the platform organisation.','https://example.com/jobs/stripe-strategy','{Strategy,Payments,Hybrid}',true,'2026-10-12'),
-  ('Product Manager, Payments','Notion','San Francisco, CA','Full-time','Product','Own the billing and payments roadmap for our self-serve business.','https://example.com/jobs/notion-pm','{Product,Billing,Onsite}',true,'2026-10-09'),
-  ('Policy Analyst, Technology','U.S. Department of Commerce','Washington, DC','Full-time','Government','Support the development of policy on emerging technologies and digital trade.','https://example.com/jobs/commerce-policy','{Policy,Public Sector}',false,'2026-10-07')
-on conflict do nothing;
+create policy "authenticated can read fellows"
+  on public.fellows for select
+  to authenticated
+  using (true);
 
-insert into public.fellows (full_name, headline, current_company, current_title, city, state, country, cohort_year, industry, email, linkedin_url, education, skills, bio, linkedin_id) values
-  ('Amara Okonkwo','Strategy & Operations Lead','Stripe','Strategy & Operations Lead','New York','NY','United States',2019,'Fintech','amara.okonkwo@example.com','https://www.linkedin.com/in/example-amara','University of Pennsylvania, Wharton','{Strategy,Operations,Payments}','Fellow in the inaugural cohort.','demo-amara'),
-  ('Daniel Reyes','Product Manager, Growth','Notion','Product Manager, Growth','San Francisco','CA','United States',2020,'Software','daniel.reyes@example.com','https://www.linkedin.com/in/example-daniel','UC Berkeley','{Product,Growth,Data}','Joined Notion after three years in consulting.','demo-daniel'),
-  ('Priya Balakrishnan','Investment Associate','Andreessen Horowitz','Investment Associate','Menlo Park','CA','United States',2018,'Venture Capital','priya.b@example.com','https://www.linkedin.com/in/example-priya','Stanford University','{Investing,Fintech,Enterprise}','Invests in early-stage fintech and infrastructure.','demo-priya')
-on conflict do nothing;
+-- No insert/update/delete policies are defined: only the service_role key
+-- (used by local import / scraper scripts, and never shipped to the browser)
+-- can write.
+-- ============================================================================

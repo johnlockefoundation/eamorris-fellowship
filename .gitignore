@@ -15,6 +15,9 @@ venv/
 # Keep source lists / exports here; load them into Supabase instead.
 data/
 
+# Supabase CLI local state (project ref, pooler URL, etc.)
+supabase/.temp/
+
 # Brand source archives (the extracted Stylesheet+Logos/ folder is committed)
 Stylesheet+Logos.zip
 Stylesheet+Logos (1).zip
