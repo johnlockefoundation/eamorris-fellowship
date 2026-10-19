@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+
+# Python (scraper)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Secrets — never commit real keys. Use env vars (see scraper/scrape.py).
+.env
+*.local
+
+# Brand source archives (the extracted Stylesheet+Logos/ folder is committed)
+Stylesheet+Logos.zip
+Stylesheet+Logos (1).zip

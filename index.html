@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login · EA Morris Fellowship</title>
+  <meta name="description" content="EA Morris Fellowship for Emerging Leaders — member portal." />
+  <link rel="icon" href="Stylesheet+Logos/EAMorris-Icon-Color.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="auth-body">
+  <main class="auth-layout">
+    <section class="auth-brand">
+      <div class="auth-brand-inner">
+        <img class="brand-logo" src="Stylesheet+Logos/EAMorris-White-Horizontal.png" alt="EA Morris" />
+        <h1 class="auth-headline">Fellowship for<br />Emerging Leaders</h1>
+        <p class="auth-sub">
+          A private portal for EA Morris fellows — job opportunities and a
+          searchable directory of alumni across the network.
+        </p>
+        <ul class="auth-points">
+          <li>Curated opportunities, updated by the programme team</li>
+          <li>Search alumni by company, location, and background</li>
+          <li>Stay connected to fellows across every cohort</li>
+        </ul>
+      </div>
+      <div class="auth-ring" aria-hidden="true"></div>
+    </section>
+
+    <section class="auth-panel">
+      <div class="auth-card">
+        <img class="auth-card-logo" src="Stylesheet+Logos/EAMorris-Color-Horizontal.png" alt="EA Morris" />
+        <h2 class="auth-title">Member login</h2>
+        <p class="auth-hint">Enter the fellowship password you were sent.</p>
+
+        <form id="loginForm" novalidate>
+          <div class="field">
+            <label for="password">Password</label>
+            <div class="password-wrap">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="••••••••••"
+                required
+                autocomplete="current-password"
+                autofocus
+              />
+              <button type="button" class="toggle-pw" id="togglePw" aria-label="Show password">Show</button>
+            </div>
+            <p class="error-message" id="errorMessage" role="alert"></p>
+          </div>
+          <button type="submit" class="btn-primary" id="submitBtn">
+            <span class="btn-label">Sign in</span>
+            <span class="spinner" aria-hidden="true"></span>
+          </button>
+        </form>
+
+        <p class="auth-foot" id="modeNote"></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="auth.js"></script>
+  <script>
+    (async function () {
+      const cfg = window.EAM_CONFIG;
+      const note = document.getElementById("modeNote");
+      note.textContent = EAM.live
+        ? "Secure access powered by Supabase."
+        : "Demo mode \u2014 password: " + cfg.DEMO_PASSWORD;
+
+      // Already signed in? Go straight to the portal.
+      if (await EAM.isAuthed()) {
+        window.location.replace("dashboard.html");
+        return;
+      }
+
+      const form = document.getElementById("loginForm");
+      const input = document.getElementById("password");
+      const errorEl = document.getElementById("errorMessage");
+      const btn = document.getElementById("submitBtn");
+
+      document.getElementById("togglePw").addEventListener("click", function () {
+        const show = input.type === "password";
+        input.type = show ? "text" : "password";
+        this.textContent = show ? "Hide" : "Show";
+        this.setAttribute("aria-label", show ? "Hide password" : "Show password");
+      });
+
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        errorEl.textContent = "";
+        const pw = input.value.trim();
+        if (!pw) {
+          errorEl.textContent = "Please enter the password.";
+          return;
+        }
+        btn.classList.add("loading");
+        btn.disabled = true;
+        try {
+          await EAM.login(pw);
+          window.location.replace("dashboard.html");
+        } catch (err) {
+          errorEl.textContent = err.message || "Something went wrong. Try again.";
+          input.value = "";
+          input.focus();
+        } finally {
+          btn.classList.remove("loading");
+          btn.disabled = false;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
