@@ -36,6 +36,11 @@
 
 * { box-sizing: border-box; }
 
+/* The `hidden` attribute must always win. Several components below set an
+   explicit `display` (e.g. `.gate { display: flex }`), which otherwise
+   overrides the browser's default `[hidden] { display: none }`. */
+[hidden] { display: none !important; }
+
 html, body { margin: 0; padding: 0; }
 
 body {

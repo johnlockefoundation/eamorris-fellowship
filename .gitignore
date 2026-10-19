@@ -11,6 +11,10 @@ venv/
 .env
 *.local
 
+# Real fellow data — must NOT be published on the public Pages site.
+# Keep source lists / exports here; load them into Supabase instead.
+data/
+
 # Brand source archives (the extracted Stylesheet+Logos/ folder is committed)
 Stylesheet+Logos.zip
 Stylesheet+Logos (1).zip

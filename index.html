@@ -37,6 +37,9 @@
         <p class="auth-hint">Enter the fellowship password you were sent.</p>
 
         <form id="loginForm" novalidate>
+          <!-- Helps password managers and silences the a11y warning. The real
+               account email lives in config.js and is never shown. -->
+          <input type="text" name="username" value="EA Morris Fellow" autocomplete="username" hidden />
           <div class="field">
             <label for="password">Password</label>
             <div class="password-wrap">
