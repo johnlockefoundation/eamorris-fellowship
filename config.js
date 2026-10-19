@@ -31,6 +31,10 @@ window.EAM_CONFIG = {
   // ---- Content ------------------------------------------------------------
   PROGRAM_NAME: "EA Morris Fellowship for Emerging Leaders",
   PROGRAM_SHORT: "Fellowship Portal",
+
+  // Shown on the login page so it's obvious when a stale cache is in play.
+  // Bump this (and the ?v= query strings in the HTML) on each deploy.
+  BUILD: "2026-10-19.4",
 };
 
 /** True when real Supabase credentials have been supplied. */

@@ -37,11 +37,26 @@
      */
     async login(password) {
       if (this.live) {
-        const { error } = await this.supabase.auth.signInWithPassword({
-          email: cfg.SHARED_EMAIL,
-          password,
-        });
-        if (error) throw new Error("Incorrect password. Please try again.");
+        let error = null;
+        try {
+          ({ error } = await this.supabase.auth.signInWithPassword({
+            email: cfg.SHARED_EMAIL,
+            password,
+          }));
+        } catch (e) {
+          throw new Error(
+            "Couldn't reach the server. Check your connection and try again."
+          );
+        }
+        if (error) {
+          const badCreds =
+            error.status === 400 || /invalid|credential/i.test(error.message || "");
+          throw new Error(
+            badCreds
+              ? "Incorrect password. Please try again."
+              : "Couldn't reach the server. Please try again."
+          );
+        }
         return;
       }
       // Demo mode

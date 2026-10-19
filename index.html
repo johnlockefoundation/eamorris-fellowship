@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=4" />
 </head>
 <body class="auth-body">
   <main class="auth-layout">
@@ -68,15 +68,18 @@
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="config.js"></script>
-  <script src="auth.js"></script>
+  <script src="config.js?v=4"></script>
+  <script src="auth.js?v=4"></script>
   <script>
     (async function () {
       const cfg = window.EAM_CONFIG;
       const note = document.getElementById("modeNote");
-      note.textContent = EAM.live
-        ? "Secure access powered by Supabase."
-        : "Demo mode \u2014 password: " + cfg.DEMO_PASSWORD;
+      note.textContent =
+        (EAM.live
+          ? "Secure access powered by Supabase."
+          : "Demo mode \u2014 password: " + cfg.DEMO_PASSWORD) +
+        "  \u00b7  build " +
+        cfg.BUILD;
 
       // Already signed in? Go straight to the portal.
       if (await EAM.isAuthed()) {
