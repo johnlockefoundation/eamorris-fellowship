@@ -73,13 +73,13 @@
       } else {
         sessionStorage.removeItem(SESSION_KEY);
       }
-      window.location.href = "index.html";
+      window.location.href = "login.html";
     },
 
     /** Redirect to the login page when there is no session. */
     async requireAuth() {
       if (!(await this.isAuthed())) {
-        window.location.replace("index.html");
+        window.location.replace("login.html");
         return false;
       }
       return true;

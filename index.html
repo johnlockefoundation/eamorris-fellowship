@@ -3,125 +3,369 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login · EA Morris Fellowship</title>
-  <meta name="description" content="EA Morris Fellowship for Emerging Leaders — member portal." />
+  <title>E.A. Morris Fellowship for Emerging Leaders</title>
+  <meta name="description" content="The E.A. Morris Fellowship for Emerging Leaders — building a growing base of principled leaders for the future of North Carolina." />
   <link rel="icon" href="Stylesheet+Logos/EAMorris-Icon-Color.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=4" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=5" />
 </head>
-<body class="auth-body">
-  <main class="auth-layout">
-    <section class="auth-brand">
-      <div class="auth-brand-inner">
-        <img class="brand-logo" src="Stylesheet+Logos/EAMorris-White-Horizontal.png" alt="EA Morris" />
-        <h1 class="auth-headline">Fellowship for<br />Emerging Leaders</h1>
-        <p class="auth-sub">
-          A private portal for EA Morris fellows — job opportunities and a
-          searchable directory of alumni across the network.
+<body class="landing-body">
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a href="index.html" class="site-logo-link">
+        <img class="site-logo" src="Stylesheet+Logos/EAMorris-Color-Horizontal.png" alt="EA Morris" />
+      </a>
+      <nav class="site-nav">
+        <a href="#about">About</a>
+        <a href="#program">Program</a>
+        <a href="#fellows">Fellows</a>
+        <a href="#calendar">Calendar</a>
+        <a href="login.html" class="btn-ghost">Fellow login</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- =============================== HERO =============================== -->
+    <section class="hero">
+      <div class="hero-inner">
+        <p class="eyebrow">Fellowship for Emerging Leaders</p>
+        <h1 class="hero-title">
+          Building a growing base of principled leaders for North Carolina.
+        </h1>
+        <p class="hero-sub">
+          The E.A. Morris Fellowship brings together emerging leaders from across
+          the state to develop the knowledge, skills, and relationships to bring
+          public and private institutions together to solve key problems.
         </p>
-        <ul class="auth-points">
-          <li>Curated opportunities, updated by the programme team</li>
-          <li>Search alumni by company, location, and background</li>
-          <li>Stay connected to fellows across every cohort</li>
-        </ul>
+        <div class="hero-cta">
+          <a href="#fellows" class="btn-primary btn-inline">Meet the fellows</a>
+          <a href="#program" class="btn-ghost btn-ghost-light">Explore the program</a>
+        </div>
       </div>
-      <div class="auth-ring" aria-hidden="true"></div>
+      <div class="hero-ring" aria-hidden="true"></div>
     </section>
 
-    <section class="auth-panel">
-      <div class="auth-card">
-        <img class="auth-card-logo" src="Stylesheet+Logos/EAMorris-Color-Horizontal.png" alt="EA Morris" />
-        <h2 class="auth-title">Member login</h2>
-        <p class="auth-hint">Enter the fellowship password you were sent.</p>
-
-        <form id="loginForm" novalidate>
-          <!-- Helps password managers and silences the a11y warning. The real
-               account email lives in config.js and is never shown. -->
-          <input type="text" name="username" value="EA Morris Fellow" autocomplete="username" hidden />
-          <div class="field">
-            <label for="password">Password</label>
-            <div class="password-wrap">
-              <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="••••••••••"
-                required
-                autocomplete="current-password"
-                autofocus
-              />
-              <button type="button" class="toggle-pw" id="togglePw" aria-label="Show password">Show</button>
-            </div>
-            <p class="error-message" id="errorMessage" role="alert"></p>
+    <!-- =============================== ABOUT ============================== -->
+    <section id="about" class="section about-section">
+      <div class="about-grid">
+        <div class="about-copy">
+          <p class="eyebrow eyebrow-dark">About the fellowship</p>
+          <h2 class="section-title">A legacy of leadership, carried forward.</h2>
+          <p class="lede">
+            The E.A. Morris Fellowship for Emerging Leaders was established to
+            honor the memory of Edwin A. Morris and accepted its inaugural class
+            of Fellows in 2006.
+          </p>
+          <p>
+            Ed Morris passed away on July 31, 1998, but through the E.A. Morris
+            Charitable Foundation and this Fellowship, his legacy of leadership
+            continues — training and energizing new leaders for the future of
+            North Carolina.
+          </p>
+          <p>
+            The program is administered by the John Locke Foundation. In each of
+            its years of operation it has graduated outstanding Fellows in
+            diverse professional fields, and this experience has already begun to
+            generate a growing base of emerging leaders who understand how to
+            bring people and institutions together.
+          </p>
+        </div>
+        <aside class="about-stats">
+          <div class="stat">
+            <span class="stat-num" id="statFellows">—</span>
+            <span class="stat-label">Fellows</span>
           </div>
-          <button type="submit" class="btn-primary" id="submitBtn">
-            <span class="btn-label">Sign in</span>
-            <span class="spinner" aria-hidden="true"></span>
-          </button>
-        </form>
+          <div class="stat">
+            <span class="stat-num" id="statCohorts">—</span>
+            <span class="stat-label">Cohorts</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num" id="statYears">2006</span>
+            <span class="stat-label">Established</span>
+          </div>
+        </aside>
+      </div>
+    </section>
 
-        <p class="auth-foot" id="modeNote"></p>
+    <!-- ============================== LEGACY ============================== -->
+    <section id="legacy" class="section legacy-section">
+      <div class="section-head center">
+        <p class="eyebrow eyebrow-dark">In memory of</p>
+        <h2 class="section-title">Edwin A. Morris, 1903&ndash;1998</h2>
+        <p class="section-sub">Inducted into the North Carolina Business Hall of Fame, 1993</p>
+      </div>
+
+      <div class="prose">
+        <p>
+          One of the country's premier marketing and clothing executives, Edwin
+          A. Morris built the world's largest manufacturer of work and
+          recreational clothing during the mid-twentieth century: Blue Bell, Inc.
+        </p>
+
+        <figure class="pullquote">
+          <blockquote>&ldquo;Once you've done that, everything else is easy.&rdquo;</blockquote>
+          <figcaption>— Ed Morris, on picking cotton as a boy in Concord</figcaption>
+        </figure>
+
+        <p>
+          Born in Cabarrus County on August 13, 1903, the youngest of five
+          children, Morris grew up picking cotton on a farm in Concord, earning
+          50 cents for every 100 pounds he picked. He received a bachelor's
+          degree in business administration from Washington and Lee University in
+          1926, attended Harvard Business School for a year, and then went to work
+          for a Massachusetts textile firm.
+        </p>
+
+        <h3 class="prose-head">It all started with overalls</h3>
+        <p>
+          In 1904, C.C. Hudson and Associates launched the Hudson Overalls
+          Company in Greensboro. After buying out his partners, Hudson renamed
+          the company Blue Bell. In 1937, Edwin Morris joined Blue Bell-Globe
+          Manufacturing as plant manager in Abingdon, Illinois; four years later
+          he became executive vice president in charge of manufacturing.
+        </p>
+        <p>
+          In 1948, Morris became president and CEO. A marketing whiz, he saw
+          potential in a little-used brand the company had acquired: Wranglers.
+          Eager to challenge Levi Strauss and Lee, Blue Bell enlisted
+          world-champion cowboys to wear-test and endorse the jeans, and
+          diversified into dungarees, shirts, women's and children's clothing,
+          and much more.
+        </p>
+        <p>
+          By 1955 the firm had $53 million in sales, making it the world's largest
+          producer of work and play clothes. Morris added four new plants in his
+          first seven years as president, bringing the total to 28 plants in
+          seven states. He was elected chairman of the board in 1966 and remained
+          CEO until 1971, serving as chairman until his retirement in 1981.
+        </p>
+
+        <figure class="pullquote">
+          <blockquote>&ldquo;I'm a survivor.&rdquo;</blockquote>
+          <figcaption>— Ed Morris, at age 92</figcaption>
+        </figure>
+
+        <p>
+          Personally frugal and unassuming, Morris nonetheless counted among his
+          friends and associates leaders and emerging leaders in business,
+          politics, and academia — including Jesse Helms, Lauch Faircloth, Terry
+          Sanford, Joseph Bryan, and Jim Martin.
+        </p>
+        <p>
+          In 1980 he was awarded an honorary doctor of law degree from Washington
+          and Lee University, the same year the E.A. Morris Charitable Foundation
+          was established. After a cancer diagnosis late in life, his initial
+          $1 million gift in 1978 to the Duke Comprehensive Cancer Center was
+          followed by others to improve the health and survival of patients
+          seeking treatment there. The Foundation has also been a generous
+          benefactor of the Greensboro Public Library, Washington and Lee
+          University, the John Locke Foundation, and many religious and civic
+          organizations.
+        </p>
+
+        <h3 class="prose-head">Legacy becomes a fellowship</h3>
+        <p>
+          The Fellowship grew out of several organizational ideas focused on
+          citizenship and free enterprise. One was the North Carolina Institute
+          for Citizenship, conceived in early 2003 to support citizens actively
+          involved in government. Out of it grew a related concept, the North
+          Carolina Free Enterprise Institute, whose mission narrowed to focus on
+          emerging leaders aged 25&ndash;35 and incorporated training in effective
+          communication and other skills.
+        </p>
+        <p>
+          On August 13, 2003 — the centennial of Mr. Morris's birth — a
+          discussion to renew that mission took place in Raleigh under the
+          sponsorship of the E.A. Morris Foundation. The organization was
+          incorporated as the Center for Citizenship, Enterprise, and Government
+          under longtime community leader Jim Lofton.
+        </p>
+        <p>
+          Jim Lofton's death in 2006 left those plans unfulfilled. Rather than
+          abandon the vision of training and promoting young leaders inspired by
+          Ed Morris, the CCEG, E.A. Morris, and John Locke Foundation boards
+          agreed to transfer responsibility for the leadership program to the
+          John Locke Foundation — a natural fit, as the E.A. Morris Foundation
+          had been a contributing founder of JLF in 1990, and the missions were
+          closely aligned.
+        </p>
+        <p class="prose-note">
+          With thanks to Mr. John Thomas, President of the E.A. Morris Charitable
+          Foundation, and the E.A. Morris Board, for their continued financial
+          and moral support of this Fellowship.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================== PROGRAM ============================= -->
+    <section id="program" class="section program-section">
+      <div class="section-head center">
+        <p class="eyebrow eyebrow-dark">The program</p>
+        <h2 class="section-title">What the fellowship includes</h2>
+        <p class="section-sub">
+          Intensive seminars and leadership training, public policy events,
+          directed readings, and the tools to lead on a local problem.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature">
+          <h3>Leadership retreats</h3>
+          <p>
+            Three mandatory retreats held at different locations around the
+            state each year, developing the individual Fellow's leadership
+            skills and building the class into a network.
+          </p>
+        </div>
+        <div class="feature">
+          <h3>Local forums</h3>
+          <p>
+            Four events or conferences over the year, sponsored by universities,
+            civic groups, think tanks, and other organizations — chosen by each
+            Fellow from an approved list.
+          </p>
+        </div>
+        <div class="feature">
+          <h3>A leadership project</h3>
+          <p>
+            The focus of the yearlong effort: a volunteer, nonprofit,
+            business-led, or public-sector undertaking in which Fellows develop a
+            team and lead.
+          </p>
+        </div>
+        <div class="feature">
+          <h3>Public recognition</h3>
+          <p>
+            Fellows' commitment and hard work are formally recognized at the
+            Hello/Farewell gala, closing out the Fellowship year.
+          </p>
+        </div>
+      </div>
+
+      <div class="topics">
+        <h3 class="topics-head">The Fellowship develops further understanding of</h3>
+        <ul class="topics-list">
+          <li>Spotting opportunities for leadership in a local community</li>
+          <li>Ethics for developing leadership</li>
+          <li>Elements of fundraising and philanthropy</li>
+          <li>Program planning and evaluation</li>
+          <li>Economic analysis and how to use it</li>
+          <li>Speaking in public and in the media</li>
+          <li>Modern electoral politics</li>
+          <li>Emotional intelligence and organizational effectiveness</li>
+          <li>Finding and cultivating like-minded volunteers, donors, and activists</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================= SELECTION ============================ -->
+    <section id="selection" class="section selection-section">
+      <div class="section-head">
+        <p class="eyebrow eyebrow-dark">Selection</p>
+        <h2 class="section-title">How fellows are selected</h2>
+      </div>
+      <ol class="steps">
+        <li><span class="step-num">1</span><div><h3>Check eligibility</h3><p>Review the criteria for the programme before applying.</p></div></li>
+        <li><span class="step-num">2</span><div><h3>Complete the application</h3><p>Follow the instructions in the application packet.</p></div></li>
+        <li><span class="step-num">3</span><div><h3>Submit your materials</h3><p>Application, professional résumé, and references list, on or before the close deadline.</p></div></li>
+        <li><span class="step-num">4</span><div><h3>Selection Weekend</h3><p>Finalists are invited to Selection Weekend for the next stage.</p></div></li>
+        <li><span class="step-num">5</span><div><h3>Final decisions</h3><p>The incoming class of Fellows is announced.</p></div></li>
+      </ol>
+    </section>
+
+    <!-- ============================= CALENDAR ============================= -->
+    <section id="calendar" class="section calendar-section">
+      <div class="section-head">
+        <p class="eyebrow eyebrow-dark">Dates</p>
+        <h2 class="section-title">2026 Fellowship Calendar</h2>
+      </div>
+      <div class="calendar-table">
+        <div class="cal-row"><span class="cal-date">December 15, 2025</span><span class="cal-event">Application period closes</span></div>
+        <div class="cal-row"><span class="cal-date">December 22, 2025</span><span class="cal-event">Finalist notification and invitations to Selection Weekend</span></div>
+        <div class="cal-row"><span class="cal-date">February 7&ndash;8, 2026</span><span class="cal-event">Selection Weekend</span></div>
+        <div class="cal-row"><span class="cal-date">March 13&ndash;15, 2026</span><span class="cal-event">Retreat 1 — Pinehurst, NC</span></div>
+        <div class="cal-row tentative"><span class="cal-date">June 5&ndash;7, 2026</span><span class="cal-event">Retreat 2 — Chetola, NC <em>(tentative)</em></span></div>
+        <div class="cal-row"><span class="cal-date">September 11&ndash;13, 2026</span><span class="cal-event">Retreat 3 — Wilmington, NC</span></div>
+        <div class="cal-row"><span class="cal-date">February 6, 2027</span><span class="cal-event">Fellowship ends — Hello &amp; Goodbye Dinner</span></div>
+      </div>
+      <p class="calendar-note">
+        Questions about the application process? Reach us at
+        <a href="mailto:info@eamorrisfellows.org">info@eamorrisfellows.org</a>.
+      </p>
+    </section>
+
+    <!-- ============================== FELLOWS ============================= -->
+    <section id="fellows" class="section fellows-section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow eyebrow-dark">Our network</p>
+          <h2 class="section-title">Meet the fellows</h2>
+          <p class="section-sub">
+            Fellows of the E.A. Morris programme, listed with their class year.
+          </p>
+        </div>
+        <span class="count" id="fellowCount"></span>
+      </div>
+
+      <div class="toolbar">
+        <div class="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 21l-4.3-4.3M11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <input type="search" id="fellowSearch" placeholder="Search fellows by name, employer, or keyword…" />
+        </div>
+        <select id="classYear" class="select"><option value="">All class years</option></select>
+      </div>
+
+      <div id="fellowGrid" class="fellow-grid"></div>
+      <p class="empty" id="emptyState" hidden>No fellows match your search.</p>
+      <div class="load-more-wrap">
+        <button class="btn-ghost" id="loadMore" hidden>Show more fellows</button>
       </div>
     </section>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="config.js?v=4"></script>
-  <script src="auth.js?v=4"></script>
-  <script>
-    (async function () {
-      const cfg = window.EAM_CONFIG;
-      const note = document.getElementById("modeNote");
-      note.textContent =
-        (EAM.live
-          ? "Secure access powered by Supabase."
-          : "Demo mode \u2014 password: " + cfg.DEMO_PASSWORD) +
-        "  \u00b7  build " +
-        cfg.BUILD;
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <div class="footer-brand">
+        <img class="footer-logo" src="Stylesheet+Logos/EAMorris-White-Horizontal.png" alt="EA Morris" />
+        <p class="footer-tag">Fellowship for Emerging Leaders</p>
+      </div>
+      <div class="footer-cols">
+        <div>
+          <h4>Fellowship</h4>
+          <a href="#about">About</a>
+          <a href="#legacy">Our namesake</a>
+          <a href="#program">The program</a>
+          <a href="#calendar">Calendar</a>
+        </div>
+        <div>
+          <h4>Fellows</h4>
+          <a href="#fellows">Directory</a>
+          <a href="login.html">Member login</a>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <a href="mailto:info@eamorrisfellows.org">info@eamorrisfellows.org</a>
+        </div>
+      </div>
+    </div>
+    <p class="footer-fine">
+      © <span id="year"></span> E.A. Morris Fellowship for Emerging Leaders ·
+      Administered by the John Locke Foundation
+    </p>
+  </footer>
 
-      // Already signed in? Go straight to the portal.
-      if (await EAM.isAuthed()) {
-        window.location.replace("dashboard.html");
-        return;
-      }
+  <!-- Fellow bio modal -->
+  <div class="modal-scrim" id="modalScrim" hidden></div>
+  <div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-label="Fellow biography">
+    <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
 
-      const form = document.getElementById("loginForm");
-      const input = document.getElementById("password");
-      const errorEl = document.getElementById("errorMessage");
-      const btn = document.getElementById("submitBtn");
-
-      document.getElementById("togglePw").addEventListener("click", function () {
-        const show = input.type === "password";
-        input.type = show ? "text" : "password";
-        this.textContent = show ? "Hide" : "Show";
-        this.setAttribute("aria-label", show ? "Hide password" : "Show password");
-      });
-
-      form.addEventListener("submit", async function (e) {
-        e.preventDefault();
-        errorEl.textContent = "";
-        const pw = input.value.trim();
-        if (!pw) {
-          errorEl.textContent = "Please enter the password.";
-          return;
-        }
-        btn.classList.add("loading");
-        btn.disabled = true;
-        try {
-          await EAM.login(pw);
-          window.location.replace("dashboard.html");
-        } catch (err) {
-          errorEl.textContent = err.message || "Something went wrong. Try again.";
-          input.value = "";
-          input.focus();
-        } finally {
-          btn.classList.remove("loading");
-          btn.disabled = false;
-        }
-      });
-    })();
-  </script>
+  <script src="config.js?v=5"></script>
+  <script src="demo-data.js?v=5"></script>
+  <script src="landing.js?v=5"></script>
 </body>
 </html>

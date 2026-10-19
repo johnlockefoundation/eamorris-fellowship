@@ -34,7 +34,7 @@ window.EAM_CONFIG = {
 
   // Shown on the login page so it's obvious when a stale cache is in play.
   // Bump this (and the ?v= query strings in the HTML) on each deploy.
-  BUILD: "2026-10-19.4",
+  BUILD: "2026-10-19.5",
 };
 
 /** True when real Supabase credentials have been supplied. */

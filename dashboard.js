@@ -117,7 +117,7 @@
   function fellowHaystack(f) {
     return [
       f.full_name, f.current_company, f.current_title, f.headline,
-      f.city, f.state, f.country, f.industry, f.education,
+      f.city, f.state, f.country, f.industry, f.education, f.bio,
       (f.skills || []).join(" "),
     ].join(" ").toLowerCase();
   }

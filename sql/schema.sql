@@ -68,13 +68,16 @@ create index if not exists fellows_name_idx    on public.fellows using gin (to_t
 create index if not exists fellows_company_idx on public.fellows using gin (to_tsvector('simple', coalesce(current_company, '')));
 
 -- ---------------------------------------------------------------------------
--- Row Level Security — reads require an authenticated session
+-- Row Level Security
+--   jobs     — signed-in fellows only (curated opportunities)
+--   fellows  — PUBLIC: the landing page showcases fellow bios to visitors
 -- ---------------------------------------------------------------------------
 alter table public.jobs    enable row level security;
 alter table public.fellows enable row level security;
 
-drop policy if exists "anon can read jobs"            on public.jobs;
-drop policy if exists "anon can read fellows"         on public.fellows;
+drop policy if exists "anon can read jobs"             on public.jobs;
+drop policy if exists "anon can read fellows"          on public.fellows;
+drop policy if exists "public can read fellows"        on public.fellows;
 drop policy if exists "authenticated can read jobs"    on public.jobs;
 drop policy if exists "authenticated can read fellows" on public.fellows;
 
@@ -83,9 +86,9 @@ create policy "authenticated can read jobs"
   to authenticated
   using (true);
 
-create policy "authenticated can read fellows"
+create policy "public can read fellows"
   on public.fellows for select
-  to authenticated
+  to anon, authenticated
   using (true);
 
 -- No insert/update/delete policies are defined: only the service_role key
