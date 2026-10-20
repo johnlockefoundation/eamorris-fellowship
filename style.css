@@ -173,7 +173,7 @@ input:focus, .select:focus {
 }
 .auth-brand-inner { position: relative; z-index: 2; max-width: 520px; }
 
-.brand-logo { height: 56px; width: auto; margin-bottom: 40px; }
+.brand-logo { height: clamp(110px, 12vw, 170px); width: auto; margin-bottom: 44px; }
 
 .auth-headline {
   font-size: clamp(38px, 4.4vw, 60px);
@@ -582,7 +582,7 @@ input:focus, .select:focus {
 @media (max-width: 900px) {
   .auth-layout { grid-template-columns: 1fr; }
   .auth-brand { padding: 48px 28px 40px; }
-  .auth-headline { font-size: 34px; }
+  .brand-logo { height: 110px; margin-bottom: 28px; }
   .auth-ring { display: none; }
   .auth-card-logo { display: block; }
   .auth-card { border: none; box-shadow: none; background: transparent; padding: 8px 4px 32px; }
