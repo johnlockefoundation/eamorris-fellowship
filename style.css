@@ -751,6 +751,7 @@ html { scroll-behavior: smooth; }
 .selection-section { background: var(--paper); }
 .calendar-section { background: var(--cream); }
 .fellows-section { background: var(--paper); }
+.leadership-section { background: var(--cream-dark); }
 
 /* ------------------------------- About --------------------------------- */
 .about-grid {
