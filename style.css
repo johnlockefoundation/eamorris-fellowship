@@ -759,7 +759,7 @@ html { scroll-behavior: smooth; }
   display: grid;
   grid-template-columns: 1.45fr 1fr;
   gap: clamp(32px, 5vw, 64px);
-  align-items: start;
+  align-items: center;
 }
 .about-copy p { font-size: 16.5px; line-height: 1.75; color: var(--muted); margin: 0 0 18px; }
 .about-copy .lede { font-size: 19px; line-height: 1.6; color: var(--ink); }
@@ -773,8 +773,6 @@ html { scroll-behavior: smooth; }
   border-radius: var(--radius);
   padding: 10px 28px;
   box-shadow: var(--shadow-sm);
-  position: sticky;
-  top: 96px;
 }
 .stat {
   padding: 22px 0;
