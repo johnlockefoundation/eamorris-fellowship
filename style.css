@@ -930,6 +930,36 @@ html { scroll-behavior: smooth; }
 .steps h3 { font-size: 19px; color: var(--teal-900); margin-bottom: 3px; }
 .steps p { margin: 0; font-size: 14.5px; line-height: 1.6; color: var(--muted); }
 
+.steps details {
+  margin-top: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  background: var(--cream);
+}
+.steps details summary {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--teal-800);
+  cursor: pointer;
+  list-style: none;
+}
+.steps details summary::-webkit-details-marker { display: none; }
+.steps details summary::marker { display: none; }
+.steps details ul {
+  margin: 10px 0 0 20px;
+  padding: 0;
+  color: var(--muted);
+  font-size: 14.5px;
+  line-height: 1.7;
+}
+.steps details li { margin-bottom: 6px; }
+.steps details h4 {
+  margin: 14px 0 8px;
+  font-size: 15px;
+  color: var(--teal-800);
+}
+
 /* ------------------------------ Calendar ------------------------------- */
 .calendar-table {
   max-width: 880px;
