@@ -646,7 +646,7 @@ html { scroll-behavior: smooth; }
 .site-nav > a:not(.btn-ghost):hover { color: var(--teal-600); border-bottom-color: var(--teal-300); }
 .site-nav > a.btn-apply {
   width: auto;
-  padding: 7px 16px;
+  padding: 9px 16px;
   font-size: 14px;
   color: #fff;
 }
