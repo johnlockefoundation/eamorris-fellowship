@@ -983,7 +983,6 @@ html { scroll-behavior: smooth; }
   border-bottom: 1px solid var(--line-soft);
 }
 .cal-row:last-child { border-bottom: none; }
-.cal-row.tentative { background: var(--cream); }
 .cal-date {
   flex: 0 0 210px;
   font-size: 14.5px;
