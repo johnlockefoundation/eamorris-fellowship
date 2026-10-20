@@ -952,15 +952,16 @@ html { scroll-behavior: smooth; }
 }
 .steps details summary::-webkit-details-marker { display: none; }
 .steps details summary::marker { display: none; }
-.steps details ul {
-  margin: 10px 0 0 20px;
-  padding: 0;
+.eligibility ul {
+  margin: 10px 0 0;
+  padding: 0 0 0 20px;
+  list-style: disc;
   color: var(--muted);
   font-size: 14.5px;
   line-height: 1.7;
 }
-.steps details li { margin-bottom: 6px; }
-.steps details h4 {
+.eligibility li { margin-bottom: 6px; }
+.eligibility h4 {
   margin: 14px 0 8px;
   font-size: 15px;
   color: var(--teal-800);
