@@ -101,10 +101,6 @@
     btn.hidden = remaining <= 0;
     btn.textContent = `Show more fellows (${remaining} remaining)`;
     $("#emptyState").hidden = state.filtered.length !== 0;
-    $("#fellowCount").textContent =
-      state.filtered.length === state.all.length
-        ? `${state.all.length} fellows`
-        : `${state.filtered.length} of ${state.all.length}`;
   }
 
   /* ------------------------------ modal -------------------------------- */
