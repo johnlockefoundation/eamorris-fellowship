@@ -258,8 +258,6 @@
     $("#gate").hidden = true;
     $("#app").hidden = false;
     $("#year").textContent = new Date().getFullYear();
-    $("#modePill").textContent = EAM.live ? "Live" : "Demo";
-    $("#modePill").classList.toggle("live", EAM.live);
 
     $("#logoutBtn").addEventListener("click", () => EAM.logout());
     document.getElementById("drawerClose").addEventListener("click", closeDrawer);
