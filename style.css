@@ -138,6 +138,9 @@ input:focus, .select:focus {
   border-color: var(--teal-500);
   box-shadow: 0 0 0 3px rgba(47, 116, 128, 0.15);
 }
+.select {
+  padding-right: 40px;
+}
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
