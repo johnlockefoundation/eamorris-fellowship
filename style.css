@@ -1069,11 +1069,14 @@ html { scroll-behavior: smooth; }
   margin: 0 auto;
   padding: 56px 24px 40px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 40px;
 }
-.footer-logo { height: 110px; width: auto; }
+.footer-brand { display: flex; align-items: center; }
+.footer-logo-link { display: inline-flex; align-items: center; }
+.footer-logo { height: 138px; width: auto; }
 .footer-cols { display: flex; flex-wrap: wrap; gap: 60px; }
 .footer-cols h4 {
   font-family: var(--sans);
@@ -1125,6 +1128,6 @@ html { scroll-behavior: smooth; }
   .cal-row { flex-direction: column; gap: 5px; padding: 18px 22px; }
   .cal-date { flex: none; }
   .footer-cols { gap: 34px; }
-  .footer-logo { height: 64px; }
+  .footer-logo { height: 79px; }
   .site-footer-inner { padding: 44px 18px 32px; }
 }
