@@ -171,9 +171,10 @@ input:focus, .select:focus {
   align-items: center;
   padding: 64px clamp(32px, 6vw, 96px);
 }
-.auth-brand-inner { position: relative; z-index: 2; max-width: 520px; }
+.auth-brand-inner { position: relative; z-index: 2; max-width: 520px; width: 100%; }
 
-.brand-logo { height: clamp(110px, 12vw, 170px); width: auto; margin-bottom: 44px; }
+.brand-link { display: inline-flex; align-items: center; margin-bottom: 44px; }
+.brand-logo { height: clamp(110px, 12vw, 170px); width: auto; }
 
 .auth-headline {
   font-size: clamp(38px, 4.4vw, 60px);
@@ -582,7 +583,9 @@ input:focus, .select:focus {
 @media (max-width: 900px) {
   .auth-layout { grid-template-columns: 1fr; }
   .auth-brand { padding: 48px 28px 40px; }
-  .brand-logo { height: 110px; margin-bottom: 28px; }
+  .brand-link { margin-bottom: 28px; }
+  .brand-logo { height: 110px; }
+  .auth-brand-inner .brand-link { display: flex; justify-content: center; }
   .auth-ring { display: none; }
   .auth-card-logo { display: block; }
   .auth-card { border: none; box-shadow: none; background: transparent; padding: 8px 4px 32px; }
