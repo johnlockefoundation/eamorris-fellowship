@@ -933,10 +933,6 @@ html { scroll-behavior: smooth; }
 
 .steps details {
   margin-top: 10px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  padding: 14px 18px;
-  background: var(--cream);
 }
 .steps details summary {
   font-size: 14px;
