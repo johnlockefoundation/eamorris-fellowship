@@ -646,7 +646,7 @@ html { scroll-behavior: smooth; }
   gap: 24px;
 }
 .site-logo-link { display: inline-flex; align-items: center; }
-.site-logo { height: 36px; width: auto; }
+.site-logo { height: 48px; width: auto; }
 
 .site-nav {
   display: flex;
@@ -663,6 +663,11 @@ html { scroll-behavior: smooth; }
   transition: border-color 0.16s ease, color 0.16s ease;
 }
 .site-nav > a:not(.btn-ghost):hover { color: var(--teal-600); border-bottom-color: var(--teal-300); }
+.site-nav .btn-apply {
+  width: auto;
+  padding: 7px 16px;
+  font-size: 14px;
+}
 
 /* -------------------------------- Hero --------------------------------- */
 .hero {
@@ -1061,7 +1066,7 @@ html { scroll-behavior: smooth; }
   flex-wrap: wrap;
   gap: 40px;
 }
-.footer-logo { height: 38px; width: auto; }
+.footer-logo { height: 110px; width: auto; }
 .footer-tag { margin: 16px 0 0; font-size: 14px; color: rgba(255, 255, 255, 0.62); }
 .footer-cols { display: flex; flex-wrap: wrap; gap: 60px; }
 .footer-cols h4 {
@@ -1112,5 +1117,6 @@ html { scroll-behavior: smooth; }
   .cal-row { flex-direction: column; gap: 5px; padding: 18px 22px; }
   .cal-date { flex: none; }
   .footer-cols { gap: 34px; }
+  .footer-logo { height: 64px; }
   .site-footer-inner { padding: 44px 18px 32px; }
 }
