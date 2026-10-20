@@ -22,11 +22,6 @@
           A private portal for EA Morris fellows — job opportunities and a
           searchable directory of alumni across the network.
         </p>
-        <ul class="auth-points">
-          <li>Curated opportunities, updated by the programme team</li>
-          <li>Search alumni by company, location, and background</li>
-          <li>Stay connected to fellows across every cohort</li>
-        </ul>
       </div>
       <div class="auth-ring" aria-hidden="true"></div>
     </section>
@@ -63,7 +58,6 @@
           </button>
         </form>
 
-        <p class="auth-foot" id="modeNote"></p>
         <p class="auth-back"><a href="index.html">← Back to the fellowship home page</a></p>
       </div>
     </section>
@@ -74,15 +68,6 @@
   <script src="auth.js?v=5"></script>
   <script>
     (async function () {
-      const cfg = window.EAM_CONFIG;
-      const note = document.getElementById("modeNote");
-      note.textContent =
-        (EAM.live
-          ? "Secure access powered by Supabase."
-          : "Demo mode \u2014 password: " + cfg.DEMO_PASSWORD) +
-        "  \u00b7  build " +
-        cfg.BUILD;
-
       // Already signed in? Go straight to the portal.
       if (await EAM.isAuthed()) {
         window.location.replace("dashboard.html");

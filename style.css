@@ -188,7 +188,7 @@ input:focus, .select:focus {
   line-height: 1.65;
   color: rgba(255, 255, 255, 0.82);
   max-width: 440px;
-  margin: 0 0 32px;
+  margin: 0;
 }
 
 .auth-points { list-style-type: disc; margin: 0; padding-left: 22px; }
@@ -638,21 +638,27 @@ html { scroll-behavior: smooth; }
   gap: 24px;
 }
 .site-nav > a:not(.btn-ghost) {
+  display: inline-flex;
+  align-items: center;
   font-size: 14.5px;
   font-weight: 600;
+  line-height: 1.2;
   color: var(--teal-800);
   text-decoration: none;
-  padding: 6px 0;
+  padding: 10px 0;
   border-bottom: 2px solid transparent;
   transition: border-color 0.16s ease, color 0.16s ease;
 }
 .site-nav > a:not(.btn-ghost):hover { color: var(--teal-600); border-bottom-color: var(--teal-300); }
 .site-nav > a.btn-apply {
   width: auto;
-  padding: 9px 16px;
+  padding: 10px 20px;
+  border-bottom: none;
+  border-radius: 999px;
   font-size: 14px;
   color: #fff;
 }
+.site-nav > a.btn-apply:hover { border-bottom: none; }
 
 /* -------------------------------- Hero --------------------------------- */
 .hero {
