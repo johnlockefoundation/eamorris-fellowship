@@ -219,6 +219,26 @@
               : ""
           }
           ${chips.length ? `<div class="chips">${chips.join("")}</div>` : ""}
+          ${
+            x.linkedin_url || x.email
+              ? `<div class="fellow-links">
+                  ${
+                    x.linkedin_url
+                      ? `<a class="fellow-link" href="${escapeHtml(x.linkedin_url)}" target="_blank" rel="noopener" aria-label="LinkedIn profile" onclick="event.stopPropagation()">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z" fill="currentColor"/></svg>
+                      </a>`
+                      : ""
+                  }
+                  ${
+                    x.email
+                      ? `<a class="fellow-link" href="mailto:${escapeHtml(x.email)}" aria-label="Send email" onclick="event.stopPropagation()">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm0 2v.01L12 13l8-6.99V6H4zm16 14V8.24l-8 6.99-8-6.99V20h16z" fill="currentColor"/></svg>
+                      </a>`
+                      : ""
+                  }
+                </div>`
+              : ""
+          }
         </div>
       </article>`;
       })

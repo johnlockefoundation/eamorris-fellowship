@@ -476,6 +476,28 @@ input:focus, .select:focus {
   border-color: var(--teal-300);
   outline: none;
 }
+.fellow-links {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+.fellow-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--teal-100);
+  color: var(--teal-800);
+  transition: background 0.16s ease, color 0.16s ease, transform 0.12s ease;
+}
+.fellow-link svg { width: 15px; height: 15px; }
+.fellow-link:hover {
+  background: var(--teal-800);
+  color: #fff;
+  transform: translateY(-1px);
+}
 .avatar {
   flex: none;
   width: 54px; height: 54px;
