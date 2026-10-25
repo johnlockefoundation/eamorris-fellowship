@@ -55,8 +55,10 @@
   /* ------------------------------ state -------------------------------- */
   const state = {
     jobs: [],
+    events: [],
     fellows: [],
     jobFilters: { q: "", category: "", type: "", location: "" },
+    eventFilters: { q: "", category: "", type: "", location: "" },
     fellowFilters: { q: "", industry: "", cohort: "", location: "" },
   };
 
@@ -107,6 +109,59 @@
         <div class="job-foot">
           <span class="job-date">Posted ${escapeHtml(formatDate(j.posted_at))}</span>
           <a class="btn-small" href="${escapeHtml(j.url)}" target="_blank" rel="noopener">View role →</a>
+        </div>
+      </article>`
+      )
+      .join("");
+  }
+
+  /* ----------------------------- events -------------------------------- */
+  function renderEvents() {
+    const f = state.eventFilters;
+    const q = f.q.toLowerCase();
+    const list = state.events.filter((e) => {
+      const hay = [e.title, e.company, e.description, e.location, (e.tags || []).join(" ")]
+        .join(" ")
+        .toLowerCase();
+      return (
+        (!q || hay.includes(q)) &&
+        (!f.category || e.category === f.category) &&
+        (!f.type || e.work_type === f.type) &&
+        (!f.location || e.location === f.location)
+      );
+    });
+
+    $("#eventsCount").textContent = `${list.length} event${list.length === 1 ? "" : "s"}`;
+    const wrap = $("#eventsList");
+
+    if (!list.length) {
+      wrap.innerHTML = "";
+      toggleEmpty(true);
+      return;
+    }
+    toggleEmpty(false);
+
+    wrap.innerHTML = list
+      .map(
+        (e) => `
+      <article class="job-card${e.featured ? " featured" : ""}">
+        ${e.featured ? '<span class="ribbon">Featured</span>' : ""}
+        <div class="job-top">
+          <div class="job-mark">${escapeHtml(initials(e.company))}</div>
+          <div>
+            <h3 class="job-title">${escapeHtml(e.title)}</h3>
+            <p class="job-company">${escapeHtml(e.company)}</p>
+          </div>
+        </div>
+        <p class="job-desc">${escapeHtml(e.description)}</p>
+        <div class="chips">
+          <span class="chip chip-solid">${escapeHtml(e.location)}</span>
+          <span class="chip">${escapeHtml(e.work_type)}</span>
+          <span class="chip">${escapeHtml(e.category)}</span>
+        </div>
+        <div class="job-foot">
+          <span class="job-date">${escapeHtml(formatDate(e.event_date))}</span>
+          <a class="btn-small" href="${escapeHtml(e.url)}" target="_blank" rel="noopener">View event →</a>
         </div>
       </article>`
       )
@@ -238,6 +293,7 @@
         const name = tab.dataset.tab;
         $("#panel-jobs").classList.toggle("active", name === "jobs");
         $("#panel-fellows").classList.toggle("active", name === "fellows");
+        $("#panel-events").classList.toggle("active", name === "events");
         toggleEmpty(false);
         // Deep-link via hash so refreshes keep the tab.
         history.replaceState(null, "", "#" + name);
@@ -247,6 +303,8 @@
     const initial = (location.hash || "").replace("#", "");
     if (initial === "fellows") {
       document.querySelector('.tab[data-tab="fellows"]').click();
+    } else if (initial === "events") {
+      document.querySelector('.tab[data-tab="events"]').click();
     }
   }
 
@@ -269,17 +327,22 @@
     setupTabs();
 
     // Load data
-    const [jobs, fellows] = await Promise.all([
+    const [jobs, events, fellows] = await Promise.all([
       EAMData.getJobs(),
+      EAMData.getEvents(),
       EAMData.getFellows(),
     ]);
     state.jobs = jobs;
+    state.events = events;
     state.fellows = fellows;
 
     // Populate filters
     fillSelect($("#jobCategory"), uniq(jobs.map((j) => j.category)), "All categories");
     fillSelect($("#jobType"), uniq(jobs.map((j) => j.work_type)), "All types");
     fillSelect($("#jobLocation"), uniq(jobs.map((j) => j.location)), "All locations");
+    fillSelect($("#eventCategory"), uniq(events.map((e) => e.category)), "All categories");
+    fillSelect($("#eventType"), uniq(events.map((e) => e.work_type)), "All types");
+    fillSelect($("#eventLocation"), uniq(events.map((e) => e.location)), "All locations");
     fillSelect($("#fellowIndustry"), uniq(fellows.map((f) => f.industry)), "All industries");
     fillSelect(
       $("#fellowCohort"),
@@ -296,6 +359,14 @@
     $("#jobCategory").addEventListener("change", (e) => { state.jobFilters.category = e.target.value; renderJobs(); });
     $("#jobType").addEventListener("change", (e) => { state.jobFilters.type = e.target.value; renderJobs(); });
     $("#jobLocation").addEventListener("change", (e) => { state.jobFilters.location = e.target.value; renderJobs(); });
+
+    $("#eventSearch").addEventListener("input", (e) => {
+      state.eventFilters.q = e.target.value.trim();
+      renderEvents();
+    });
+    $("#eventCategory").addEventListener("change", (e) => { state.eventFilters.category = e.target.value; renderEvents(); });
+    $("#eventType").addEventListener("change", (e) => { state.eventFilters.type = e.target.value; renderEvents(); });
+    $("#eventLocation").addEventListener("change", (e) => { state.eventFilters.location = e.target.value; renderEvents(); });
 
     $("#fellowSearch").addEventListener("input", (e) => {
       state.fellowFilters.q = e.target.value.trim();
@@ -325,6 +396,7 @@
     });
 
     renderJobs();
+    renderEvents();
     renderFellows();
   }
 

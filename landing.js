@@ -171,6 +171,26 @@
     });
     $("#loadMore").addEventListener("click", renderMore);
 
+    // Selection steps: click anywhere on a step container to toggle its details
+    document.querySelectorAll(".steps li").forEach((li) => {
+      li.addEventListener("click", (e) => {
+        const details = li.querySelector("details");
+        if (!details) return;
+        if (e.target.closest("summary")) return;
+        if (e.target.closest("ul, .eligibility-body, .step-content")) return;
+        details.open = !details.open;
+      });
+    });
+
+    // Upper-nav Apply: scroll to selection with the application step open
+    const applyBtn = document.querySelector("a.btn-apply");
+    if (applyBtn) {
+      applyBtn.addEventListener("click", () => {
+        const d = document.querySelector(".apply-details");
+        if (d) d.open = true;
+      });
+    }
+
     $("#fellowGrid").addEventListener("click", (e) => {
       const card = e.target.closest(".fellow-card");
       if (!card) return;

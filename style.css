@@ -145,7 +145,15 @@ input:focus, .select:focus {
   box-shadow: 0 0 0 3px rgba(47, 116, 128, 0.15);
 }
 .select {
-  padding-right: 40px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: 44px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2312343A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px 16px;
+  cursor: pointer;
 }
 
 @keyframes spin { to { transform: rotate(360deg); } }
@@ -408,7 +416,7 @@ input:focus, .select:focus {
 .job-card.featured::before {
   content: "";
   position: absolute;
-  left: -1px; top: -1px; bottom: -1px;
+  left: 0; top: 0; bottom: 0;
   width: 4px;
   background: var(--teal-700);
   border-radius: var(--radius) 0 0 var(--radius);
@@ -680,6 +688,13 @@ html { scroll-behavior: smooth; }
   color: var(--olive-green);
   margin: 0 0 18px;
 }
+.hero .eyebrow {
+  font-size: clamp(12px, 1.6vw, 20px);
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  margin: 0 0 14px;
+  line-height: 1.1;
+}
 .eyebrow-dark { color: var(--teal-600); }
 
 .hero-title {
@@ -923,6 +938,14 @@ html { scroll-behavior: smooth; }
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 22px 26px;
+  cursor: pointer;
+  transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+.steps li:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  border-color: var(--teal-300);
+  background: #fff;
 }
 .step-num {
   flex: none;
@@ -949,9 +972,21 @@ html { scroll-behavior: smooth; }
   color: var(--teal-800);
   cursor: pointer;
   list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 .steps details summary::-webkit-details-marker { display: none; }
 .steps details summary::marker { display: none; }
+.step-chevron {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+  flex: none;
+}
+.steps details[open] .step-chevron {
+  transform: rotate(180deg);
+}
 .eligibility ul {
   margin: 10px 0 0;
   padding: 0 0 0 20px;

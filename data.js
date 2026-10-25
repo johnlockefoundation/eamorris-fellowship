@@ -12,12 +12,15 @@ window.EAMData = (function () {
 
   async function fromSupabase(table) {
     const supabase = window.EAM.supabase;
+    const orderCol =
+      table === "jobs" ? "posted_at" :
+      table === "events" ? "event_date" :
+      "full_name";
+    const ascending = table !== "jobs";
     const { data, error } = await supabase
       .from(table)
       .select("*")
-      .order(table === "jobs" ? "posted_at" : "full_name", {
-        ascending: table !== "jobs",
-      });
+      .order(orderCol, { ascending });
     if (error) {
       console.error("Supabase error for " + table + ":", error.message);
       return [];
@@ -29,6 +32,10 @@ window.EAMData = (function () {
     async getJobs() {
       const jobs = configured ? await fromSupabase("jobs") : window.EAM_DEMO_JOBS;
       return jobs.slice().sort((a, b) => (a.posted_at < b.posted_at ? 1 : -1));
+    },
+    async getEvents() {
+      const events = configured ? await fromSupabase("events") : window.EAM_DEMO_EVENTS;
+      return events.slice().sort((a, b) => (a.event_date < b.event_date ? -1 : 1));
     },
     async getFellows() {
       const fellows = configured

@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=6" />
+  <link rel="stylesheet" href="style.css?v=9" />
 </head>
 <body class="landing-body">
   <header class="site-header">
@@ -19,9 +19,7 @@
       </a>
       <nav class="site-nav">
         <a href="#about">About</a>
-        <a href="#legacy">Our Namesake</a>
-        <a href="#program">Program</a>
-        <a href="#fellows">Fellows</a>
+        <a href="#fellows">Program Fellows</a>
         <a href="#selection" class="btn-primary btn-apply">Apply</a>
         <a href="login.html" class="btn-ghost">Fellow Portal</a>
       </nav>
@@ -42,8 +40,8 @@
           public and private institutions together to solve key problems.
         </p>
         <div class="hero-cta">
-          <a href="#fellows" class="btn-primary btn-inline">Meet the fellows</a>
           <a href="#program" class="btn-ghost btn-ghost-light">Explore the program</a>
+          <a href="#selection" class="btn-primary btn-inline">Apply</a>
         </div>
       </div>
       <img class="hero-ring" src="Stylesheet+Logos/EAMorris-Icon-LightColor.png" alt="" aria-hidden="true" />
@@ -270,7 +268,7 @@
       <ol class="steps">
         <li><span class="step-num">1</span><div><h3>Check eligibility</h3>
           <details class="eligibility">
-            <summary>Check our specific eligibility criteria. &gt;&gt;</summary>
+            <summary>Check our specific eligibility criteria. <svg class="step-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
             <ul>
               <li>Between the ages of 25 and 40.</li>
               <li>Must be a resident of North Carolina and a U.S. citizen.</li>
@@ -288,10 +286,14 @@
             </ul>
           </details>
         </div></li>
-        <li><span class="step-num">2</span><div><h3>Complete the application</h3><p>Follow the instructions in the application packet.</p></div></li>
-        <li><span class="step-num">3</span><div><h3>Submit your materials</h3><p>Application, professional résumé, and references list, on or before the close deadline.</p></div></li>
-        <li><span class="step-num">4</span><div><h3>Selection Weekend</h3><p>Finalists are invited to Selection Weekend for the next stage.</p></div></li>
-        <li><span class="step-num">5</span><div><h3>Final decisions</h3><p>The incoming class of Fellows is announced.</p></div></li>
+        <li><span class="step-num">2</span><div><h3>Apply</h3>
+          <details class="apply-details">
+            <summary>Complete the application. <svg class="step-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+            <p>Follow the application packet instructions and submit your application, résumé, and references by the deadline.</p>
+          </details>
+        </div></li>
+        <li><span class="step-num">3</span><div><h3>Selection Weekend</h3><p>Finalists are invited to Selection Weekend for the next stage.</p></div></li>
+        <li><span class="step-num">4</span><div><h3>Final decisions</h3><p>The incoming class of Fellows is announced.</p></div></li>
       </ol>
       <p class="calendar-note">
         Questions about the application process? Reach us at
@@ -397,6 +399,7 @@
           <a href="#about">About</a>
           <a href="#legacy">Our Namesake</a>
           <a href="#program">Program</a>
+          <a href="#leadership">Leadership</a>
           <a href="#calendar">Calendar</a>
         </div>
         <div>
@@ -423,8 +426,8 @@
     <div class="modal-body" id="modalBody"></div>
   </div>
 
-  <script src="config.js?v=5"></script>
-  <script src="demo-data.js?v=5"></script>
-  <script src="landing.js?v=5"></script>
+  <script src="config.js?v=6"></script>
+  <script src="demo-data.js?v=6"></script>
+  <script src="landing.js?v=6"></script>
 </body>
 </html>

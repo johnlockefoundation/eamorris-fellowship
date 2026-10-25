@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=6" />
+  <link rel="stylesheet" href="style.css?v=9" />
 </head>
 <body class="app-body">
   <div id="gate" class="gate">
@@ -27,6 +27,9 @@
           <button class="tab" data-tab="fellows" role="tab" aria-selected="false">
             Fellow Directory
           </button>
+          <button class="tab" data-tab="events" role="tab" aria-selected="false">
+            Events
+          </button>
         </nav>
         <div class="header-actions">
           <button class="btn-ghost" id="logoutBtn">Sign out</button>
@@ -40,9 +43,6 @@
         <div class="panel-head">
           <div>
             <h2 class="panel-title">Curated opportunities</h2>
-            <p class="panel-desc">
-              Roles shared by the EA Morris network and programme team.
-            </p>
           </div>
           <span class="count" id="jobsCount"></span>
         </div>
@@ -85,6 +85,28 @@
         <div id="fellowsList" class="fellow-grid"></div>
       </section>
 
+      <!-- ---------------- EVENTS ---------------- -->
+      <section id="panel-events" class="panel" role="tabpanel">
+        <div class="panel-head">
+          <div>
+            <h2 class="panel-title">Curated events</h2>
+          </div>
+          <span class="count" id="eventsCount"></span>
+        </div>
+
+        <div class="toolbar">
+          <div class="search">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 21l-4.3-4.3M11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <input type="search" id="eventSearch" placeholder="Search by event, organizer, or keyword…" />
+          </div>
+          <select id="eventCategory" class="select"><option value="">All categories</option></select>
+          <select id="eventType" class="select"><option value="">All types</option></select>
+          <select id="eventLocation" class="select"><option value="">All locations</option></select>
+        </div>
+
+        <div id="eventsList" class="card-grid"></div>
+      </section>
+
       <p class="empty" id="emptyState" hidden>No matches found. Try clearing your filters.</p>
     </main>
 
@@ -102,10 +124,10 @@
   </aside>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="config.js?v=5"></script>
-  <script src="demo-data.js?v=5"></script>
-  <script src="auth.js?v=5"></script>
-  <script src="data.js?v=5"></script>
-  <script src="dashboard.js?v=5"></script>
+  <script src="config.js?v=6"></script>
+  <script src="demo-data.js?v=6"></script>
+  <script src="auth.js?v=6"></script>
+  <script src="data.js?v=6"></script>
+  <script src="dashboard.js?v=6"></script>
 </body>
 </html>

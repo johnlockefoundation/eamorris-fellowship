@@ -91,6 +91,32 @@ create policy "public can read fellows"
   to anon, authenticated
   using (true);
 
+-- ---------------------------------------------------------------------------
+-- events
+-- ---------------------------------------------------------------------------
+create table if not exists public.events (
+  id          uuid primary key default gen_random_uuid(),
+  title       text not null,
+  company     text,
+  location    text,
+  work_type   text,
+  category    text,
+  description text,
+  url         text,
+  tags        text[] default '{}',
+  featured    boolean default false,
+  event_date  date default current_date,
+  created_at  timestamptz default now()
+);
+
+alter table public.events enable row level security;
+
+drop policy if exists "authenticated can read events" on public.events;
+create policy "authenticated can read events"
+  on public.events for select
+  to authenticated
+  using (true);
+
 -- No insert/update/delete policies are defined: only the service_role key
 -- (used by local import / scraper scripts, and never shipped to the browser)
 -- can write.
