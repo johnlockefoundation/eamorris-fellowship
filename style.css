@@ -413,13 +413,8 @@ input:focus, .select:focus {
   border-color: var(--teal-300);
 }
 .job-card.featured { border-color: var(--teal-500); }
-.job-card.featured::before {
-  content: "";
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 4px;
-  background: var(--teal-700);
-  border-radius: var(--radius) 0 0 var(--radius);
+.job-card.featured {
+  border-left: 4px solid var(--teal-700);
 }
 .ribbon {
   align-self: flex-start;
