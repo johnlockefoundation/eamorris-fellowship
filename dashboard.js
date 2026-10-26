@@ -13,6 +13,11 @@
     }[c]));
   }
 
+  function lastName(name) {
+    const parts = String(name || "").trim().split(/\s+/).filter(Boolean);
+    return parts.length ? parts[parts.length - 1] : "";
+  }
+
   function initials(name) {
     return String(name || "?")
       .split(/\s+/)
@@ -187,7 +192,7 @@
         (!f.cohort || String(x.cohort_year) === f.cohort) &&
         (!f.location || fellowLocation(x) === f.location)
       );
-    });
+    }).slice().sort((a, b) => lastName(a.full_name).localeCompare(lastName(b.full_name)));
 
     $("#fellowsCount").textContent = `${list.length} fellow${list.length === 1 ? "" : "s"}`;
     const wrap = $("#fellowsList");

@@ -10,6 +10,11 @@
 window.EAMData = (function () {
   const configured = window.EAM && window.EAM.live;
 
+  function lastName(name) {
+    const parts = String(name || "").trim().split(/\s+/).filter(Boolean);
+    return parts.length ? parts[parts.length - 1] : "";
+  }
+
   async function fromSupabase(table) {
     const supabase = window.EAM.supabase;
     const orderCol =
@@ -42,7 +47,7 @@ window.EAMData = (function () {
         ? await fromSupabase("fellows")
         : window.EAM_DEMO_FELLOWS;
       return fellows.slice().sort((a, b) =>
-        (a.full_name || "").localeCompare(b.full_name || "")
+        lastName(a.full_name).localeCompare(lastName(b.full_name))
       );
     },
   };

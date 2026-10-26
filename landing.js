@@ -25,6 +25,11 @@
       .map((w) => w[0].toUpperCase()).join("");
   }
 
+  function lastName(name) {
+    const parts = String(name || "").trim().split(/\s+/).filter(Boolean);
+    return parts.length ? parts[parts.length - 1] : "";
+  }
+
   function excerpt(text, max) {
     const t = (text || "").trim();
     if (t.length <= max) return t;
@@ -38,11 +43,11 @@
     const cfg = window.EAM_CONFIG;
     if (!cfg || !cfg.isLive()) {
       return (window.EAM_DEMO_FELLOWS || []).slice().sort((a, b) =>
-        (a.full_name || "").localeCompare(b.full_name || "")
+        lastName(a.full_name).localeCompare(lastName(b.full_name))
       );
     }
     const cols = "id,full_name,cohort_year,bio,current_company,current_title,headline,industry,city,state,country,linkedin_url";
-    const url = `${cfg.SUPABASE_URL}/rest/v1/fellows?select=${cols}&order=full_name.asc`;
+    const url = `${cfg.SUPABASE_URL}/rest/v1/fellows?select=${cols}`;
     const res = await fetch(url, {
       headers: {
         apikey: cfg.SUPABASE_ANON_KEY,
@@ -50,7 +55,10 @@
       },
     });
     if (!res.ok) throw new Error(`Fellows request failed (${res.status})`);
-    return res.json();
+    const data = await res.json();
+    return (data || []).slice().sort((a, b) =>
+      lastName(a.full_name).localeCompare(lastName(b.full_name))
+    );
   }
 
   /* ------------------------------ stats -------------------------------- */
