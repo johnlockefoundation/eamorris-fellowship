@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=11" />
+  <link rel="stylesheet" href="style.css?v=12" />
 </head>
 <body class="landing-body">
   <header class="site-header">
@@ -17,7 +17,10 @@
       <a href="index.html" class="site-logo-link">
         <img class="site-logo" src="Stylesheet+Logos/EAMorris-Color-Horizontal.png" alt="EA Morris" />
       </a>
-      <nav class="site-nav">
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" id="siteNav">
         <a href="#about">About</a>
         <a href="#fellows">Program Fellows</a>
         <a href="#selection" class="btn-primary btn-apply">Apply</a>
@@ -43,6 +46,9 @@
           <a href="#program" class="btn-ghost btn-ghost-light">Explore the program</a>
           <a href="#selection" class="btn-primary btn-inline">Apply</a>
         </div>
+      </div>
+      <div class="hero-photo-wrap" aria-hidden="true">
+        <img class="hero-photo" src="AdobeStock_334153259.jpeg" alt="" />
       </div>
       <img class="hero-ring" src="Stylesheet+Logos/EAMorris-Icon-LightColor.png" alt="" aria-hidden="true" />
     </section>

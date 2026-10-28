@@ -142,6 +142,22 @@
     const yr = $("#year");
     if (yr) yr.textContent = new Date().getFullYear();
 
+    // Mobile menu toggle
+    const menuToggle = $("#menuToggle");
+    const siteNav = $("#siteNav");
+    if (menuToggle && siteNav) {
+      menuToggle.addEventListener("click", () => {
+        const open = siteNav.classList.toggle("open");
+        menuToggle.setAttribute("aria-expanded", String(open));
+      });
+      siteNav.querySelectorAll("a").forEach((a) => {
+        a.addEventListener("click", () => {
+          siteNav.classList.remove("open");
+          menuToggle.setAttribute("aria-expanded", "false");
+        });
+      });
+    }
+
     let fellows = [];
     try {
       fellows = await loadFellows();
