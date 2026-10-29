@@ -786,12 +786,16 @@ html { scroll-behavior: smooth; }
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg,
-    var(--teal-950) 0%,
-    rgba(14, 42, 47, 0.72) 28%,
-    rgba(14, 42, 47, 0.32) 55%,
-    rgba(14, 42, 47, 0.08) 80%,
-    transparent 100%);
+  background:
+    linear-gradient(180deg, rgba(14, 42, 47, 0.45) 0%, transparent 40%),
+    linear-gradient(90deg,
+      var(--teal-950) 0%,
+      rgba(14, 42, 47, 0.88) 12%,
+      rgba(14, 42, 47, 0.62) 30%,
+      rgba(14, 42, 47, 0.34) 50%,
+      rgba(14, 42, 47, 0.14) 70%,
+      rgba(14, 42, 47, 0.04) 86%,
+      transparent 100%);
   pointer-events: none;
 }
 .hero-ring {
