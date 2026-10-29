@@ -775,7 +775,6 @@ html { scroll-behavior: smooth; }
   z-index: 1;
   pointer-events: none;
   overflow: hidden;
-  background: var(--teal-900);
 }
 .hero-photo {
   width: 100%;
