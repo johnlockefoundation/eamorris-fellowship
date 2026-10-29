@@ -1008,6 +1008,24 @@ html { scroll-behavior: smooth; }
 .feature h3 { font-size: 21px; color: var(--teal-800); margin-bottom: 10px; }
 .feature p { margin: 0; font-size: 14.8px; line-height: 1.65; color: var(--muted); }
 
+/* Leadership cards: headshot left, bio right */
+#leadership .feature.leadership-card {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+.leader-photo {
+  flex: none;
+  width: 112px;
+  height: 112px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+}
+.leader-body { min-width: 0; flex: 1; }
+.leader-body h3 { font-size: 21px; color: var(--teal-800); margin-bottom: 10px; }
+.leader-body p { margin: 0; font-size: 14.8px; line-height: 1.65; color: var(--muted); }
+
 .topics {
   max-width: 940px;
   margin: 0 auto;
@@ -1048,6 +1066,28 @@ html { scroll-behavior: smooth; }
 }
 
 /* ----------------------------- Selection ------------------------------- */
+.selection-layout {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 36px;
+  align-items: stretch;
+}
+.selection-photo {
+  margin: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-height: 100%;
+}
+.selection-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  min-height: 360px;
+}
+.selection-steps { min-width: 0; }
 .steps {
   max-width: 880px;
   margin: 0 auto;
@@ -1275,6 +1315,60 @@ html { scroll-behavior: smooth; }
   border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
+/* ---------------------------- Final CTA ------------------------------- */
+.final-cta {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(88px, 11vw, 150px) 24px;
+  color: #fff;
+  text-align: center;
+}
+.final-cta-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.final-cta-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(10, 33, 38, 0.45) 0%,
+    rgba(10, 33, 38, 0.78) 55%,
+    rgba(10, 33, 38, 0.9) 100%);
+  z-index: 1;
+}
+.final-cta-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+  margin: 0 auto;
+}
+.final-cta-title {
+  font-size: clamp(28px, 4vw, 46px);
+  line-height: 1.1;
+  margin: 0 0 30px;
+  color: #fff;
+}
+.final-cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+.final-cta .btn-ghost-light {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.45);
+  color: #fff;
+}
+.final-cta .btn-ghost-light:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.75);
+}
+
 /* ---------------------------- Landing responsive ----------------------- */
 @media (max-width: 900px) {
   .about-grid { grid-template-columns: 1fr; }
@@ -1283,6 +1377,12 @@ html { scroll-behavior: smooth; }
   .cal-date { flex: 0 0 170px; }
   .bio-intro { grid-template-columns: 1fr; }
   .bio-portrait { max-width: 280px; margin: 0 auto; }
+  .selection-layout { grid-template-columns: 1fr; }
+  .selection-photo img { max-height: 320px; min-height: 0; }
+}
+@media (max-width: 600px) {
+  #leadership .feature.leadership-card { flex-direction: column; align-items: center; text-align: center; }
+  .leader-photo { width: 96px; height: 96px; }
 }
 
 @media (max-width: 780px) {
