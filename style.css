@@ -719,7 +719,7 @@ html { scroll-behavior: smooth; }
   padding: clamp(64px, 10vw, 122px) 24px clamp(72px, 11vw, 130px);
   scroll-margin-top: 76px;
 }
-.hero-inner { position: relative; z-index: 2; max-width: 1180px; margin: 0 auto 0 -8px; }
+.hero-inner { position: relative; z-index: 2; max-width: 1180px; margin: 0 auto 0 -4px; }
 
 .eyebrow {
   font-size: 20px;
