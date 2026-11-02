@@ -771,7 +771,7 @@ html { scroll-behavior: smooth; }
   right: 0;
   top: 0;
   bottom: 0;
-  width: 48%;
+  width: 43%;
   z-index: 1;
   pointer-events: none;
   overflow: hidden;
@@ -790,11 +790,11 @@ html { scroll-behavior: smooth; }
     linear-gradient(180deg, rgba(14, 42, 47, 0.45) 0%, transparent 40%),
     linear-gradient(90deg,
       var(--teal-950) 0%,
-      rgba(14, 42, 47, 0.92) 18%,
-      rgba(14, 42, 47, 0.72) 38%,
-      rgba(14, 42, 47, 0.46) 58%,
-      rgba(14, 42, 47, 0.22) 76%,
-      rgba(14, 42, 47, 0.06) 90%,
+      rgba(14, 42, 47, 0.92) 22%,
+      rgba(14, 42, 47, 0.72) 44%,
+      rgba(14, 42, 47, 0.46) 64%,
+      rgba(14, 42, 47, 0.22) 82%,
+      rgba(14, 42, 47, 0.06) 94%,
       transparent 100%);
   pointer-events: none;
 }
