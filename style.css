@@ -719,7 +719,7 @@ html { scroll-behavior: smooth; }
   padding: clamp(64px, 10vw, 122px) 24px clamp(72px, 11vw, 130px);
   scroll-margin-top: 76px;
 }
-.hero-inner { position: relative; z-index: 2; max-width: 1180px; margin: 0 auto; }
+.hero-inner { position: relative; z-index: 2; max-width: clamp(300px, 42vw, 620px); margin-left: clamp(24px, 6vw, 96px); margin-right: auto; }
 
 .eyebrow {
   font-size: 20px;
@@ -1431,7 +1431,7 @@ html { scroll-behavior: smooth; }
       rgba(14, 42, 47, 0.15) 0%,
       rgba(14, 42, 47, 0.55) 100%);
   }
-  .hero-inner { position: relative; z-index: 2; }
+  .hero-inner { position: relative; z-index: 2; max-width: none; margin-left: 0; margin-right: auto; }
 }
 @media (max-width: 720px) {
   .section { padding: 52px 18px; }
