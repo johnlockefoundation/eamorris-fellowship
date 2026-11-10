@@ -768,9 +768,9 @@ html { scroll-behavior: smooth; }
 
 .hero-ring {
   position: absolute;
-  left: -120px;
-  bottom: -160px;
-  width: 420px;
+  left: -150px;
+  bottom: -90px;
+  width: 520px;
   height: auto;
   opacity: 0.10;
   z-index: 1;
