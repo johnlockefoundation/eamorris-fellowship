@@ -213,7 +213,11 @@ input:focus, .select:focus {
   width: 420px; height: auto;
   opacity: 0.08;
   z-index: 1;
-  pointer-events: none;
+  pointer-events: auto;
+  cursor: pointer;
+}
+.auth-ring-link {
+  display: contents;
 }
 
 .auth-panel {
@@ -321,6 +325,7 @@ input:focus, .select:focus {
   gap: 28px;
 }
 .app-logo { height: 48px; width: auto; }
+.app-logo-link { display: inline-flex; align-items: center; }
 
 .tabs { display: flex; gap: 4px; margin-left: 8px; }
 .tab {
@@ -1305,7 +1310,7 @@ html { scroll-behavior: smooth; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 20%;
+  object-position: center 35%;
   z-index: 0;
 }
 .final-cta-overlay {
