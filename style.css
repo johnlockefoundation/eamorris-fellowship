@@ -1386,15 +1386,6 @@ html { scroll-behavior: smooth; }
   justify-content: center;
   gap: 14px;
 }
-.final-cta .btn-ghost-light {
-  background: transparent;
-  border-color: rgba(255, 255, 255, 0.45);
-  color: #fff;
-}
-.final-cta .btn-ghost-light:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.75);
-}
 
 /* ---------------------------- Landing responsive ----------------------- */
 @media (max-width: 900px) {
